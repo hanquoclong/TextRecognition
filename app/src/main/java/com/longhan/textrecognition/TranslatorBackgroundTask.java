@@ -31,11 +31,13 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
         String textToBeTranslated = params[0];
         String languagePair = params[1];
 
+        Log.d("doInBackground: ", textToBeTranslated + languagePair);
+
         String jsonString;
 
         try {
             //Set up the translation call URL
-            String yandexKey = "trnsl.1.1.20190412T042123Z.a12d721be9635d40.81d2b2598cbddda697a4756238e94b80f7ef27b2";
+            String yandexKey = "trnsl.1.1.20200704T003800Z.0c22556cc77a3553.f3787fed3f19329236672229aea8c8b413ae05db";
             String yandexUrl = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + yandexKey
                     + "&text=" + textToBeTranslated + "&lang=" + languagePair;
             URL yandexTranslateURL = new URL(yandexUrl);
@@ -65,7 +67,6 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
             resultString = resultString.substring(resultString.indexOf("\"")+1);
             resultString = resultString.substring(0,resultString.indexOf("\""));
 
-            Log.d("Translation Result:", resultString);
             return resultString;
 
         } catch (MalformedURLException e) {

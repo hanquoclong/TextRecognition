@@ -18,6 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -281,33 +282,13 @@ public class MainActivity extends AppCompatActivity {
         mTransBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //microsoft translator text
-                /*class bgStuff extends AsyncTask<Void,Void,Void> {
-                    String translatedText = "";
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        try {
-                            String text = mResultEt.toString();
-                            translatedText = translate(text);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            translatedText = e.toString();
-                        }
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        mTransEt.setText(translatedText);
-                        super.onPostExecute(aVoid);
-                    }
-                }
-                new bgStuff().execute();*/
 
                 // Yandex translator
-                String textTobeTranslate = String.valueOf(mResultEt.getText());
+                String textTobeTranslate = String.valueOf(mTransEt.getText());
+                Log.d( "onClick: ", textTobeTranslate);
                 String languagePair = "en-vi";
                 Translate(textTobeTranslate,languagePair);
+
             }
         });
     }
@@ -318,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
             //String result = ""; // Returns the translated text as a String
             String result = translatorBackgroundTask.execute(textToBeTranslated, languagePair).get();
             //String[] output = result.split("\""); //output[9]
-            mTransEt.setText(result); // set result in Android Monitor
+            mResultEt.setText(result); // set result in Android Monitor
         }
         catch (Exception e)
         {
