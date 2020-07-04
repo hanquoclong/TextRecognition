@@ -31,8 +31,6 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
         String textToBeTranslated = params[0];
         String languagePair = params[1];
 
-        Log.d("doInBackground: ", textToBeTranslated + languagePair);
-
         String jsonString;
 
         try {
@@ -86,7 +84,9 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         Log.d("onPostExecute", "" + result);
-        Toast.makeText(ctx, "" + result, Toast.LENGTH_SHORT).show();
+        if (result.isEmpty()){
+            Toast.makeText(ctx, "Something wrong!", Toast.LENGTH_SHORT).show();
+        }
     }
     
     @Override

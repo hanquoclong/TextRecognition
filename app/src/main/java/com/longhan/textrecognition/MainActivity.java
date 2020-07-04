@@ -279,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        mTransEt.requestFocus();
         mTransBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d( "onClick: ", textTobeTranslate);
                 String languagePair = "en-vi";
                 Translate(textTobeTranslate,languagePair);
-
             }
         });
     }
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
             TranslatorBackgroundTask translatorBackgroundTask = new TranslatorBackgroundTask(context);
             //String result = ""; // Returns the translated text as a String
             String result = translatorBackgroundTask.execute(textToBeTranslated, languagePair).get();
-            //String[] output = result.split("\""); //output[9]
+//            String[] output = result.split("\""); //output[9]
             mResultEt.setText(result); // set result in Android Monitor
         }
         catch (Exception e)
