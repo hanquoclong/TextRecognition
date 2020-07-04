@@ -84,9 +84,7 @@ public class TranslatorBackgroundTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         Log.d("onPostExecute", "" + result);
-        if (result.isEmpty()){
-            Toast.makeText(ctx, "Something wrong!", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(ctx, "" + result, Toast.LENGTH_SHORT).show();
     }
     
     @Override

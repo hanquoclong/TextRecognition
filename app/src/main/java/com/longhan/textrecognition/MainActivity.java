@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 if (!recognizer.isOperational())
                 {
                     Toast.makeText(this, "error: "+ recognizer.isOperational(), Toast.LENGTH_SHORT).show();
-
                 }
                 else
                 {
@@ -140,7 +139,12 @@ public class MainActivity extends AppCompatActivity {
                         sb.append(myItem.getValue());
                         sb.append("\n");
                     }
-                    mResultEt.setText(sb.toString());
+                    mTransEt.setText(sb.toString());
+
+
+                    String textTobeTranslate = String.valueOf(mTransEt.getText());
+                    String languagePair = "en-vi";
+                    Translate(textTobeTranslate,languagePair);
                 }
             }
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
@@ -156,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case CAMERA_REQUEST_CODE:
-                if (grantResults.length >0)
+                if (grantResults.length > 0)
                 {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
